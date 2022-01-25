@@ -148,3 +148,16 @@ for i in range(5):
 '''
 
 
+#8
+#
+def print_triangle_withdeco (num, deco_code = '%'):
+    if 0 < num < 11 :
+        i = 0
+        for j in range(1, num + 1):
+           i += 1
+           print(' ' * (10 - i), end='')
+           print(deco_code * i)
+    else :
+        print("1 ~ 10 사이의 숫자가 아닙니다.")
+print_triangle_withdeco(3, '*')
+print_triangle_withdeco(2, '%')
