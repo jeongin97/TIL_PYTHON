@@ -200,3 +200,94 @@ print(sumAll('1', '2', 3, 4, 5))
 print(sumAll(1.8, 2, '8', 'str', 3))
 print(sumAll(1, 2, 3, 4, 5, 6, 7))
 print(sumAll(1, 2, 3))
+
+
+#11
+# 함수명 : mydict / 매개변수 : 가변 키워드형 (키=값 형식으로 전달받을 수 있는 아규먼트로 개수에 제한이 없음)
+# 기능 : 아규먼트는 '키 = 값' 형식으로 전달되며 아규먼트가 전달되지 않을 시 비어있는 딕셔너리를 리턴한다. 키는 앞에 'my'를 붙인다
+def mydict (**kargs) :
+    mykargs = {}
+    for a, b in kargs.items():
+        mykargs["my" + a] = b
+    return mykargs
+
+
+print(mydict(a=2, b=3))
+print(mydict(a=2))
+print(mydict())
+
+
+#12
+# 함수명 : myprint / 매개변수 : 가변 아규먼트 1개, 가변 키워드 아규먼트 1개 (전달받을 수 있는 아규먼트 개수에 제한이 없다.)
+# 기능 : 호출시 전달되는 아규먼트의 데이터 타입에도 제한이 없으며 아규먼트가 전달되지 않으면 "Hello Python"을 출력한다.
+def myprint(*args, **kwargs):
+    if not args and not kwargs:
+        print("Hello Python")
+        return
+
+    init_kw = {"deco": "**", "sep": ","}
+    init_kw.update(kwargs)
+
+    args_sep = []
+    for i in args:
+        args_sep.append(str(i))
+        args_sep.append(init_kw["sep"])
+    args_sep = ''.join(args_sep[:-1])
+
+    print(init_kw["deco"], args_sep, init_kw["deco"], sep="")
+myprint(10, 20, 30, deco="@", sep="-")
+myprint("python", "javascript", "R", deco="$")
+myprint("가", "나", "다")
+myprint(100)
+myprint(True, 111, False, "abc", deco="&", sep="")
+
+'''
+def myprint (*p, deco="**",sep=",") :
+    if p is None :
+        print("Hello Python")
+    else :
+        print(deco, end="")
+        print(*p, sep=sep, end="")
+        print(deco)
+'''
+'''
+ef myprint(*num, **kargs):
+
+  if 'deco' in kargs.keys() and 'sep' in kargs.keys():
+    print(kargs['deco'], end='')
+    for i in num:
+        print(i, end=kargs['sep'])
+        for keys, values in kargs.items():
+            print(end='')
+    print(kargs['deco'])
+
+  elif 'deco' in kargs.keys() and 'sep' not in kargs.keys():
+      print(kargs['deco'], end='')
+      for i in num:
+          print(i, end=',')
+          for keys, values in kargs.items():
+              print(end='')
+      print(kargs['deco'])
+
+  elif 'deco' not in kargs.keys() and len(num) != 0:
+      print("**", end='')
+      for i in num:
+          print(i, end=',')
+          for keys, values in kargs.items():
+              print(end='')
+      print("**")
+
+  elif len(num) == 0 and len(kargs) == 0:
+      print("Hello python")
+'''
+'''
+def myprint(*str_tuple, **str_dict):
+    if len(str_tuple) == 0:
+        print("Hello Python")
+        return
+    str_list = [n for n in str_tuple]
+    str_list[0] = str_dict.get("deco", '**') + str(str_list[0])
+    str_list[-1] = str(str_list[-1]) + str_dict.get("deco", '**')
+    print(*str_list, sep=str_dict.get("sep", ','))
+
+'''
