@@ -35,3 +35,21 @@ def mycompredict (**kargs):
 print(mycompredict(a=2, b=3))
 print(mycompredict(a=2))
 print(mycompredict())
+
+
+#3
+# 리스트 항목에서 소문자만 추출해 리스트 생성, listv2에 저장 후 출력한다. 리스트 컴프리헨션 사용
+listv1 = ["A", "b", "c", "D", "e", "F", "G", "h"]
+listv2 = [x for x in listv if ord(x) >= 97]
+print(listv2)
+
+
+#4
+#0부터 100사이의 10개 난수를 추출해 리스트를 생성, 출력한다.
+import random
+nums = [random.randint(0,100) for _ in range(10)]
+print(nums)
+
+# 위에서 생성된 리스트를 이용하여 추출된 점수가 60 이상이면 pass, 60점 미만이면 nopass 출력
+check_pass = {i+1 : 'pass' if nums[i] >= 60 else 'nopass' for i in range(10)}
+print(check_pass)
