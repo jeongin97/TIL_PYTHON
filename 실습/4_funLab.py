@@ -149,7 +149,8 @@ for i in range(5):
 
 
 #8
-#
+# 함수명 : print_triangle_withdeco / 매개변수 : 2개 (숫자와 데코문자) / 리턴값 : 없음 / 기능 : 전달된 숫자 개수로 구성되는 삼각형을 출력한다.
+# 전달되는 아규먼트 값은 1~10으로 제한한다. 1~10 이외의 값이 전달된 경우에는 처리하지 않는다.
 def print_triangle_withdeco (num, deco_code = '%'):
     if 0 < num < 11 :
         i = 0
@@ -161,3 +162,41 @@ def print_triangle_withdeco (num, deco_code = '%'):
         print("1 ~ 10 사이의 숫자가 아닙니다.")
 print_triangle_withdeco(3, '*')
 print_triangle_withdeco(2, '%')
+
+
+#9
+# 함수명 : sumEven1 / 매개변수 : 가변형 (전달받을 수 있는 아규먼트 개수에 제한이 없다.) / 리턴값 : 1개
+# 기능 : 아규먼트는 1 이상의 숫자만 올 수 있으며 전달된 아규먼트들에서 짝수에 해당하는 숫자들만 합을 계산해 리턴한다. 짝수가 없으면 0, 아규먼트가 전달되지 않으면 -1을 리턴한다.
+def sumEven1 (*nums):
+    even_sum = 0
+    if len(nums) >= 1:
+        for i in nums:
+            if i % 2 == 0:
+                even_sum += i
+        return even_sum
+    else:
+        return -1
+
+print(sumEven1())
+print(sumEven1(1, 3, 5, 7, 9))
+print(sumEven1(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+
+
+#10
+# 함수명 : sumAll / 매개변수 : 가변형 (전달받을 수 있는 아규먼트 개수에 제한이 없다.) / 리턴값 : 1개
+# 기능 : 아규먼트가 몇 개가 전달되든 처리하며 호출시 전달되는 아규먼트의 데이터 타입에는 제한이 없다. 전달된 아규먼트 중 숫자타입만 처리하고 숫자가 아닌 데이터는 무시한다. 아규먼트가 전달되지 않았거나 전달되었다 하더라도 숫자가 없으면 None 을 리턴한다.
+def sumAll(*nums):
+    sum = 0
+    for i in nums:
+        if type(i) == int:
+            sum += i
+    if sum == 0:
+        return None
+    return sum
+
+print(sumAll())
+print(sumAll('a', '1'))
+print(sumAll('1', '2', 3, 4, 5))
+print(sumAll(1.8, 2, '8', 'str', 3))
+print(sumAll(1, 2, 3, 4, 5, 6, 7))
+print(sumAll(1, 2, 3))
